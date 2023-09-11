@@ -1,0 +1,90 @@
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE DATABASE "api_beta_development" ENCODING = 'unicode'[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE DATABASE "api_beta_test" ENCODING = 'unicode'[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE DATABASE "api_beta_production" ENCODING = 'unicode'[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5663733450567321255)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (9.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateClientes (20230911184841)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (87.9ms)[0m  [1m[35mCREATE TABLE "clientes" ("id" bigserial primary key, "nome" character varying, "num_conta" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230911184841"]]
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (16.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(5663733450567321255)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2023-09-11 14:49:49 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/fabriciosobrinho/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/fabriciosobrinho/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 40.7ms | Allocations: 637)
+Completed 200 OK in 198ms (Views: 73.5ms | ActiveRecord: 0.0ms | Allocations: 6857)
+
+
+Started GET "/clients" for 127.0.0.1 at 2023-09-11 14:50:06 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/clients"):
+  
+Started GET "/clientes" for 127.0.0.1 at 2023-09-11 14:50:36 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ClientesController#index as */*
+  Parameters: {"nome"=>"Client 2", "telefone"=>99434342, "cliente"=>{"nome"=>"Client 2"}}
+  [1m[36mCliente Load (1.9ms)[0m  [1m[34mSELECT "clientes".* FROM "clientes"[0m
+  ↳ app/controllers/clientes_controller.rb:8:in `index'
+Completed 200 OK in 12ms (Views: 2.7ms | ActiveRecord: 3.4ms | Allocations: 3275)
+
+
+Started POST "/clientes" for 127.0.0.1 at 2023-09-11 14:51:01 -0400
+Processing by ClientesController#create as */*
+  Parameters: {"nome"=>"Fabrício", "num_conta"=>342, "cliente"=>{"nome"=>"Fabrício", "num_conta"=>342}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clientes_controller.rb:20:in `create'
+  [1m[36mCliente Create (4.0ms)[0m  [1m[32mINSERT INTO "clientes" ("nome", "num_conta", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["nome", "Fabrício"], ["num_conta", "342"], ["created_at", "2023-09-11 18:51:01.079254"], ["updated_at", "2023-09-11 18:51:01.079254"]]
+  ↳ app/controllers/clientes_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (7.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clientes_controller.rb:20:in `create'
+Completed 201 Created in 34ms (Views: 0.6ms | ActiveRecord: 13.5ms | Allocations: 6840)
+
+
+Started GET "/clientes" for 127.0.0.1 at 2023-09-11 14:51:06 -0400
+Processing by ClientesController#index as */*
+  Parameters: {"nome"=>"Fabrício", "num_conta"=>342, "cliente"=>{"nome"=>"Fabrício", "num_conta"=>342}}
+  [1m[36mCliente Load (0.4ms)[0m  [1m[34mSELECT "clientes".* FROM "clientes"[0m
+  ↳ app/controllers/clientes_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.4ms | Allocations: 891)
+
+
+Started POST "/clientes" for 127.0.0.1 at 2023-09-11 14:51:29 -0400
+Processing by ClientesController#create as */*
+  Parameters: {"nome"=>"Fabrício", "num_conta"=>342, "id"=>234, "cliente"=>{"id"=>234, "nome"=>"Fabrício", "num_conta"=>342}}
+[31mUnpermitted parameter: :id. Context: { controller: ClientesController, action: create, request: #<ActionDispatch::Request:0x00007f2080097d18>, params: {"nome"=>"Fabrício", "num_conta"=>342, "id"=>234, "controller"=>"clientes", "action"=>"create", "cliente"=>{"id"=>234, "nome"=>"Fabrício", "num_conta"=>342}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clientes_controller.rb:20:in `create'
+  [1m[36mCliente Create (0.6ms)[0m  [1m[32mINSERT INTO "clientes" ("nome", "num_conta", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["nome", "Fabrício"], ["num_conta", "342"], ["created_at", "2023-09-11 18:51:29.135268"], ["updated_at", "2023-09-11 18:51:29.135268"]]
+  ↳ app/controllers/clientes_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clientes_controller.rb:20:in `create'
+Completed 201 Created in 9ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 2110)
+
+
+Started GET "/clientes" for 127.0.0.1 at 2023-09-11 14:51:35 -0400
+Processing by ClientesController#index as */*
+  Parameters: {"nome"=>"Fabrício", "num_conta"=>342, "id"=>234, "cliente"=>{"id"=>234, "nome"=>"Fabrício", "num_conta"=>342}}
+  [1m[36mCliente Load (0.2ms)[0m  [1m[34mSELECT "clientes".* FROM "clientes"[0m
+  ↳ app/controllers/clientes_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.2ms | Allocations: 882)
+
+
+Started GET "/clients" for ::1 at 2023-09-11 14:51:48 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/clients"):
+  
+Started GET "/clientes" for ::1 at 2023-09-11 14:51:49 -0400
+Processing by ClientesController#index as HTML
+  [1m[36mCliente Load (0.2ms)[0m  [1m[34mSELECT "clientes".* FROM "clientes"[0m
+  ↳ app/controllers/clientes_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 1020)
+
+
+Started GET "/favicon.ico" for ::1 at 2023-09-11 14:51:50 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
